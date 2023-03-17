@@ -38,6 +38,7 @@ class Login extends React.Component {
 
   render() {
     const { nameLogin, emailLogin, buttonLogin } = this.state;
+    const { history } = this.props;
     return (
       <>
         <input
@@ -62,6 +63,12 @@ class Login extends React.Component {
           data-testid="btn-play"
           disabled={ buttonLogin }
           onClick={ this.btnPlay }
+        />
+        <input
+          type="button"
+          value="settings"
+          data-testid="btn-settings"
+          onClick={ () => history.push('/settings') }
         />
       </>
     );
