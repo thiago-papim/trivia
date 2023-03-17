@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Feedback extends React.Component {
@@ -15,6 +16,10 @@ class Feedback extends React.Component {
     );
   }
 }
+
+Feedback.propTypes = {
+  assertions: PropTypes.number.isRequired,
+};
 
 const mapStateToProps = (user) => ({
   assertions: user.assertions,
