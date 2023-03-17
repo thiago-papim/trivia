@@ -22,6 +22,11 @@ class Login extends React.Component {
     history.push('/game');
   };
 
+  btnSettings = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   validation = () => {
     const { name, email } = this.state;
     if (name && email) {
@@ -71,7 +76,7 @@ class Login extends React.Component {
           type="button"
           value="settings"
           data-testid="btn-settings"
-          onClick={ () => history.push('/settings') }
+          onClick={ this.btnSettings }
         />
       </>
     );
