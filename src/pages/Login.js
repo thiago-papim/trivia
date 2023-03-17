@@ -1,27 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import { API_PLAYER } from '../services/APIPlayer';
+import { loginAction } from '../redux/actions';
 // Componente criado por todos integrantes do grupo
 
 class Login extends React.Component {
   state = {
-    nameLogin: '',
-    emailLogin: '',
+    name: '',
+    email: '',
     buttonLogin: true,
   };
 
   btnPlay = async () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { name, email } = this.state;
     const response = await API_PLAYER();
     const { token } = response;
     localStorage.setItem('token', token);
+    dispatch(loginAction({ name, email }));
     history.push('/game');
   };
 
   validation = () => {
-    const { nameLogin, emailLogin } = this.state;
-    if (nameLogin && emailLogin) {
+    const { name, email } = this.state;
+    if (name && email) {
       this.setState({
         buttonLogin: false,
       });
@@ -37,24 +40,24 @@ class Login extends React.Component {
   };
 
   render() {
-    const { nameLogin, emailLogin, buttonLogin } = this.state;
+    const { name, email, buttonLogin } = this.state;
     const { history } = this.props;
     return (
       <>
         <input
-          name="nameLogin"
+          name="name"
           type="text"
           placeholder="Nome"
           data-testid="input-player-name"
-          value={ nameLogin }
+          value={ name }
           onChange={ this.handleChange }
         />
         <input
-          name="emailLogin"
+          name="email"
           type="email"
           placeholder="Email"
           data-testid="input-gravatar-email"
-          value={ emailLogin }
+          value={ email }
           onChange={ this.handleChange }
         />
         <input
@@ -79,6 +82,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-};
+  dispatch: PropTypes.func,
+}.isRequired;
 
-export default Login;
+export default connect(null)(Login);
