@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import { API_PLAYER } from '../services/APIPlayer';
 // Componente criado por todos integrantes do grupo
 
 class Login extends React.Component {
@@ -7,6 +9,14 @@ class Login extends React.Component {
     nameLogin: '',
     emailLogin: '',
     buttonLogin: true,
+  };
+
+  btnPlay = async () => {
+    const { history } = this.props;
+    const response = await API_PLAYER();
+    const { token } = response;
+    localStorage.setItem('token', token);
+    history.push('/game');
   };
 
   validation = () => {
@@ -22,7 +32,7 @@ class Login extends React.Component {
     }
   };
 
-  handleChange = ({ target: { value, name } }) => {
+  handleChange = async ({ target: { value, name } }) => {
     this.setState({ [name]: value }, this.validation);
   };
 
@@ -51,10 +61,17 @@ class Login extends React.Component {
           value="Play"
           data-testid="btn-play"
           disabled={ buttonLogin }
+          onClick={ this.btnPlay }
         />
       </>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default Login;
