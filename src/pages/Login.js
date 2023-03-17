@@ -46,7 +46,6 @@ class Login extends React.Component {
 
   render() {
     const { name, email, buttonLogin } = this.state;
-    const { history } = this.props;
     return (
       <>
         <input
