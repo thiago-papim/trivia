@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   gravatarEmail: '',
 };
 
+// FEITO POR: MATEUS E EDUARDO
 const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case LOGIN: {

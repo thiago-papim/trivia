@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 
+// FEITO POR: MATEUS E EDUARDO
 class Header extends Component {
   render() {
     const { gravatarEmail, name, score } = this.props;
