@@ -23,11 +23,9 @@ export default class Game extends Component {
       } else {
         question.show = false;
       }
-      // const allQuestions = [question.correct_answer, ...question.incorrect_answers];
-      // console.log('🚀 ~ file: Game.js:27 ~ Game ~ questions ~ allQuestions:', allQuestions)
-      // question.sortQuestions = allQuestions.sort();
-      const options = [question.correct_answer, question.incorrect_answers];
-      question.sortOptions = options.sort();
+      const allQuestions = [question.correct_answer, ...question.incorrect_answers];
+      console.log('🚀 ~ file: Game.js:27 ~ Game ~ questions ~ allQuestions:', allQuestions)
+      question.sortQuestions = allQuestions.sort();
       return question;
     });
     this.setState({ questions });
@@ -54,7 +52,7 @@ export default class Game extends Component {
                   {incorrectQuestion}
                 </button>
               ))} */}
-              {/* <div data-testid="answer-options">
+              <div data-testid="answer-options">
                 {question.sortQuestions.map((sortQuestion, index) => (
                   <button
                     key={ index }
@@ -66,23 +64,6 @@ export default class Game extends Component {
                     {sortQuestion}
 
                   </button>
-                ))}
-              </div> */}
-              <div data-testid="answer-options">
-                {question.sortOptions.map((option, allIndex) => (
-                  option === question.correct_answer
-                    ? <button data-testid="correct-answer" key={ allIndex }>
-                      {option}
-                    </button>
-                    : option.map((incorrect, incorrectIndex) => (
-                      <button
-                        data-testid={ `wrong-answer-${incorrectIndex}` }
-                        key={ incorrectIndex }
-                      >
-                        {' '}
-                        {incorrect}
-                      </button>
-                    ))
                 ))}
               </div>
             </div>
