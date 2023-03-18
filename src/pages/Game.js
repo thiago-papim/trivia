@@ -24,8 +24,9 @@ export default class Game extends Component {
         question.show = false;
       }
       const allQuestions = [question.correct_answer, ...question.incorrect_answers];
-      console.log('🚀 ~ file: Game.js:27 ~ Game ~ questions ~ allQuestions:', allQuestions)
-      question.sortQuestions = allQuestions.sort();
+      console.log(allQuestions);
+      const num = 0.5;
+      question.sortQuestions = allQuestions.sort(() => num - Math.random());
       return question;
     });
     this.setState({ questions });
