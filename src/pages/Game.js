@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
+import './game.css';
 
 export default class Game extends Component {
   state = {
     questions: [],
+    response: false,
   };
 
   async componentDidMount() {
@@ -24,7 +26,7 @@ export default class Game extends Component {
         question.show = false;
       }
       const allQuestions = [question.correct_answer, ...question.incorrect_answers];
-      console.log(allQuestions);
+      // console.log(allQuestions);
       const num = 0.5;
       question.sortQuestions = allQuestions.sort(() => num - Math.random());
       return question;
@@ -32,8 +34,19 @@ export default class Game extends Component {
     this.setState({ questions });
   }
 
+  classValidation = (e) => {
+    if (e) {
+      return 'correct';
+    }
+    return 'incorrect';
+  };
+
+  changeClass = () => {
+    this.setState({ response: true });
+  };
+
   render() {
-    const { questions } = this.state;
+    const { questions, response } = this.state;
     return (
       <>
         <Header />
@@ -42,25 +55,18 @@ export default class Game extends Component {
             <div key={ i }>
               <div data-testid="question-category">{question.category}</div>
               <div data-testid="question-text">{question.question}</div>
-              {/* <button data-testid="correct-answer">
-                {question.correct_answer}
-              </button>
-              {question.incorrect_answers.map((incorrectQuestion, index) => (
-                <button
-                  data-testid={ `wrong-answer-${i}` }
-                  key={ index }
-                >
-                  {incorrectQuestion}
-                </button>
-              ))} */}
               <div data-testid="answer-options">
                 {question.sortQuestions.map((sortQuestion, index) => (
                   <button
                     key={ index }
+                    className={ response ? this.classValidation(sortQuestion === question
+                      .correct_answer) : '' }
                     data-testid={
                       `${sortQuestion === question.correct_answer
                         ? 'correct-answer' : `wrong-answer-${index}`}`
                     }
+                    onClick={ () => this.changeClass(sortQuestion === question
+                      .correct_answer) }
                   >
                     {sortQuestion}
 
