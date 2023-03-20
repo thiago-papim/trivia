@@ -5,10 +5,13 @@ import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
 import Timer from '../components/Timer';
 import { playingAction, scoreAction } from '../redux/actions';
+import './game.css';
+import Button from '../components/Button';
 
 class Game extends Component {
   state = {
     questions: [],
+    response: false,
   };
 
   async componentDidMount() {
@@ -33,7 +36,7 @@ class Game extends Component {
     });
     this.setState({ questions });
   }
-
+  
   handleAnswer = (answer) => {
     const { dispatch, timer } = this.props;
     const { questions } = this.state;
@@ -58,8 +61,29 @@ class Game extends Component {
     return baseScore + (timer * difficultyScores[difficulty]);
   };
 
+  classValidation = (e) => {
+    if (e) {
+      return 'correct';
+    }
+    return 'incorrect';
+  };
+
+  changeClass = () => {
+    this.setState({ response: true });
+  };
+
+  nextQuestion = (question, index, arrQuestions) => {
+    const { history } = this.props;
+    this.setState({ response: false });
+    question.show = false;
+    if (index === arrQuestions.length - 1) {
+      history.push('/feedback');
+    }
+    arrQuestions[index + 1].show = true;
+  };
+
   render() {
-    const { questions } = this.state;
+    const { questions, response } = this.state;
     const { playing } = this.props;
     return (
       <>
@@ -74,17 +98,28 @@ class Game extends Component {
                 {question.sortQuestions.map((sortQuestion, index) => (
                   <button
                     key={ index }
+                    className={ response ? this.classValidation(sortQuestion === question
+                      .correct_answer) : '' }
                     data-testid={
                       `${sortQuestion === question.correct_answer
                         ? 'correct-answer' : `wrong-answer-${index}`}`
                     }
-                    onClick={ () => this.handleAnswer(sortQuestion) }
+                    onClick={ () => {
+                      this.handleAnswer(sortQuestion)
+                      this.changeClass(sortQuestion === question
+                      .correct_answer)
+                    }
                     disabled={ !playing }
                   >
                     {sortQuestion}
                   </button>
                 ))}
               </div>
+              { response ? <Button
+                label="Next"
+                dataTest="btn-next"
+                onClick={ () => this.nextQuestion(question, i, questions) }
+              /> : '' }
             </div>
           ))}
         </main>
