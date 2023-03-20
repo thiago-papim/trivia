@@ -23,6 +23,11 @@ class Feedback extends React.Component {
           label="Play Again"
           onClick={ () => history.push('/') }
         />
+        <Button
+          dataTest="btn-ranking"
+          label="Ranking"
+          onClick={ () => history.push('/ranking') }
+        />
       </>
     );
   }
