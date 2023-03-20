@@ -40,7 +40,7 @@ class Game extends Component {
   handleAnswer = (answer) => {
     const { dispatch, timer } = this.props;
     const { questions } = this.state;
-    dispatch(stopPlayAction());
+    dispatch(playingAction());
     const answerData = questions.find(({ sortQuestions }) => (sortQuestions
       .find((question) => question === answer)));
     if (answerData.correct_answer === answer) {
