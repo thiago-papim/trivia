@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { stopPlayAction, timerAction } from '../redux/actions';
+import { playingAction, timerAction } from '../redux/actions';
 
 // FEITO POR MATEUS E EDUARDO
 class Timer extends Component {
@@ -16,7 +16,7 @@ class Timer extends Component {
       dispatch(timerAction());
     }
     if (timer === 0 && playing) {
-      dispatch(stopPlayAction());
+      dispatch(playingAction());
       clearInterval();
     }
   };
