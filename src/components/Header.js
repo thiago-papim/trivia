@@ -46,7 +46,7 @@ Header.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (state) => {
-  const { gravatarEmail, name, score } = state;
+  const { gravatarEmail, name, score } = state.player;
   return { gravatarEmail, name, score };
 };
 

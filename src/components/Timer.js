@@ -1,30 +1,28 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { playingAction, timerAction } from '../redux/actions';
 
-export default class Timer extends Component {
-  state = {
-    timer: 30,
-  };
-
+// FEITO POR MATEUS E EDUARDO
+class Timer extends Component {
   componentDidMount() {
     const oneSecond = 1000;
     setInterval(this.decreaseTimer, oneSecond);
   }
 
   decreaseTimer = () => {
-    const { playing, changePlaying } = this.props;
-    const { timer } = this.state;
+    const { playing, dispatch, timer } = this.props;
     if (timer > 0 && playing) {
-      this.setState((prevState) => ({ timer: prevState.timer - 1 }));
+      dispatch(timerAction());
     }
     if (timer === 0 && playing) {
-      changePlaying();
+      dispatch(playingAction());
       clearInterval();
     }
   };
 
   render() {
-    const { timer } = this.state;
+    const { timer } = this.props;
     return (
       <div>
         Tempo:
@@ -39,5 +37,13 @@ export default class Timer extends Component {
 
 Timer.propTypes = {
   playing: PropTypes.bool,
-  changePlaying: PropTypes.func,
+  timer: PropTypes.number,
+  dispatch: PropTypes.func,
 }.isRequired;
+
+const mapStateToProps = (state) => ({
+  playing: state.player.playing,
+  timer: state.player.timer,
+});
+
+export default connect(mapStateToProps)(Timer);
