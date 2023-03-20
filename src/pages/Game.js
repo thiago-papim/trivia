@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
 import Timer from '../components/Timer';
-import { playingAction, scoreAction } from '../redux/actions';
+import { assertionAction, playingAction, scoreAction } from '../redux/actions';
 import './game.css';
 import Button from '../components/Button';
 
@@ -36,7 +36,7 @@ class Game extends Component {
     });
     this.setState({ questions });
   }
-  
+
   handleAnswer = (answer) => {
     const { dispatch, timer } = this.props;
     const { questions } = this.state;
@@ -47,6 +47,7 @@ class Game extends Component {
       const { difficulty } = answerData;
       const result = this.calculateScore(timer, difficulty);
       dispatch(scoreAction(result));
+      dispatch(assertionAction());
     }
   };
 
@@ -105,10 +106,10 @@ class Game extends Component {
                         ? 'correct-answer' : `wrong-answer-${index}`}`
                     }
                     onClick={ () => {
-                      this.handleAnswer(sortQuestion)
+                      this.handleAnswer(sortQuestion);
                       this.changeClass(sortQuestion === question
-                      .correct_answer)
-                    }
+                        .correct_answer);
+                    } }
                     disabled={ !playing }
                   >
                     {sortQuestion}
