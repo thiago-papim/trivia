@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { API_PLAYER } from '../services/APIPlayer';
 import { loginAction } from '../redux/actions';
+
 // Componente criado por todos integrantes do grupo
 
 class Login extends React.Component {

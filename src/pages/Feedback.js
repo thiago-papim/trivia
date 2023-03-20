@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Feedback extends React.Component {
   render() {
-    const { assertions } = this.props;
+    const { assertions, score } = this.props;
     const totalAssertions = 3;
     return (
       <>
@@ -12,6 +12,10 @@ class Feedback extends React.Component {
         { assertions < totalAssertions
           ? (<p data-testid="feedback-text">Could be better...</p>)
           : (<p data-testid="feedback-text">Well Done</p>)}
+        <section className="results">
+          <p data-testid="feedback-total-score">{ assertions }</p>
+          <p data-testid="feedback-total-question">{ score }</p>
+        </section>
       </>
     );
   }
@@ -19,10 +23,12 @@ class Feedback extends React.Component {
 
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (user) => ({
   assertions: user.assertions,
+  score: user.score,
 });
 
 export default connect(mapStateToProps)(Feedback);

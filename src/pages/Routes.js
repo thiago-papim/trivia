@@ -5,6 +5,7 @@ import Login from './Login';
 import Settings from './Settings';
 import Game from './Game';
 
+
 class Routes extends React.Component {
   render() {
     return (
@@ -13,6 +14,7 @@ class Routes extends React.Component {
         <Route path="/settings" component={ Settings } />
         <Route exact path="/" component={ Login } />
         <Route path="/feedback" component={ Feedback } />
+        <Route path="/settings" component={ Settings } />
       </Switch>
     );
   }
