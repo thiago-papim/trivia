@@ -1,6 +1,7 @@
 export const LOGIN = 'LOGIN';
 export const TIMER = 'TIMER';
-export const PLAYING = 'PLAYING';
+export const START_PLAYING = 'START_PLAYING';
+export const STOP_PLAYING = 'STOP_PLAYING';
 export const SCORE = 'SCORE';
 export const ASSERTION = 'ASSERTION';
 
@@ -13,8 +14,12 @@ export const timerAction = () => ({
   type: TIMER,
 });
 
-export const playingAction = () => ({
-  type: PLAYING,
+export const startPlayAction = () => ({
+  type: START_PLAYING,
+});
+
+export const stopPlayAction = () => ({
+  type: STOP_PLAYING,
 });
 
 export const scoreAction = (score) => ({
