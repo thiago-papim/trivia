@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Button from '../components/Button';
+
 class Feedback extends React.Component {
   render() {
-    const { assertions, score } = this.props;
+    const { assertions, score, history } = this.props;
     const totalAssertions = 3;
     return (
       <>
@@ -16,6 +18,11 @@ class Feedback extends React.Component {
           <p data-testid="feedback-total-score">{ assertions }</p>
           <p data-testid="feedback-total-question">{ score }</p>
         </section>
+        <Button
+          dataTest="btn-play-again"
+          label="Play Again"
+          onClick={ () => history.push('/') }
+        />
       </>
     );
   }
@@ -24,6 +31,9 @@ class Feedback extends React.Component {
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const mapStateToProps = (user) => ({
