@@ -5,7 +5,6 @@ import Login from './Login';
 import Settings from './Settings';
 import Game from './Game';
 
-
 class Routes extends React.Component {
   render() {
     return (
