@@ -2,6 +2,7 @@ export const LOGIN = 'LOGIN';
 export const TIMER = 'TIMER';
 export const PLAYING = 'PLAYING';
 export const SCORE = 'SCORE';
+export const ASSERTION = 'ASSERTION';
 
 export const loginAction = (player) => ({
   type: LOGIN,
@@ -19,4 +20,8 @@ export const playingAction = () => ({
 export const scoreAction = (score) => ({
   type: SCORE,
   payload: score,
+});
+
+export const assertionAction = () => ({
+  type: ASSERTION,
 });
