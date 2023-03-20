@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
 import Timer from '../components/Timer';
-import { assertionAction, playingAction, scoreAction } from '../redux/actions';
+import { assertionAction, newTimer, playingAction, scoreAction } from '../redux/actions';
 import './game.css';
 import Button from '../components/Button';
 
@@ -74,18 +74,22 @@ class Game extends Component {
   };
 
   nextQuestion = (question, index, arrQuestions) => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(newTimer());
+    dispatch(playingAction());
     this.setState({ response: false });
-    question.show = false;
     if (index === arrQuestions.length - 1) {
       history.push('/feedback');
+    } else {
+      question.show = false;
+      arrQuestions[index + 1].show = true;
     }
-    arrQuestions[index + 1].show = true;
   };
 
   render() {
     const { questions, response } = this.state;
-    const { playing } = this.props;
+    const { timer } = this.props;
+    console.log(timer);
     return (
       <>
         <Header />
@@ -110,13 +114,13 @@ class Game extends Component {
                       this.changeClass(sortQuestion === question
                         .correct_answer);
                     } }
-                    disabled={ !playing }
+                    disabled={ response || timer === 0 }
                   >
                     {sortQuestion}
                   </button>
                 ))}
               </div>
-              { response ? <Button
+              { response || timer === 0 ? <Button
                 label="Next"
                 dataTest="btn-next"
                 onClick={ () => this.nextQuestion(question, i, questions) }
