@@ -10,11 +10,11 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/game" component={ Game } />
+        <Route path="/game" component={ Game } />
         <Route path="/settings" component={ Settings } />
-        <Route exact path="/" component={ Login } />
         <Route path="/feedback" component={ Feedback } />
         <Route path="/ranking" component={ Ranking } />
+        <Route exact path="/" component={ Login } />
       </Switch>
     );
   }

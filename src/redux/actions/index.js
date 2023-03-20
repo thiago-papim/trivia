@@ -1,22 +1,22 @@
 export const LOGIN = 'LOGIN';
+export const TIMER = 'TIMER';
+export const PLAYING = 'PLAYING';
+export const SCORE = 'SCORE';
 
 export const loginAction = (player) => ({
   type: LOGIN,
   payload: player,
 });
 
-// export const loginFetchGravatar = (player) => {
-//   return async (dispatch) => {
-//     const request =  await fetch("https://dog.ceo/api/breeds/image/random");
-//   }
-//   fetch()
-// }
+export const timerAction = () => ({
+  type: TIMER,
+});
 
-// export function fetchMovies() {
-//   return (dispatch) => {
-//     dispatch(requestMoviesStarted()); // dispatch da action 'REQUEST_MOVIES_STARTED'
-//     return fetch('alguma-api-qualquer.com')
-//       .then((response) => response.json())
-//       .then((movies) => dispatch(receiveMovies(movies))); // dispatch da action 'RECEIVE_MOVIES'
-//   };
-// }
+export const playingAction = () => ({
+  type: PLAYING,
+});
+
+export const scoreAction = (score) => ({
+  type: SCORE,
+  payload: score,
+});

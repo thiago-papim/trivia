@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
+import Timer from '../components/Timer';
+import { playingAction, scoreAction } from '../redux/actions';
 import './game.css';
 import Button from '../components/Button';
 
-export default class Game extends Component {
+class Game extends Component {
   state = {
     questions: [],
     response: false,
@@ -33,6 +36,30 @@ export default class Game extends Component {
     });
     this.setState({ questions });
   }
+  
+  handleAnswer = (answer) => {
+    const { dispatch, timer } = this.props;
+    const { questions } = this.state;
+    dispatch(playingAction());
+    const answerData = questions.find(({ sortQuestions }) => (sortQuestions
+      .find((question) => question === answer)));
+    if (answerData.correct_answer === answer) {
+      const { difficulty } = answerData;
+      const result = this.calculateScore(timer, difficulty);
+      dispatch(scoreAction(result));
+    }
+  };
+
+  calculateScore = (timer, difficulty) => {
+    const difficultyScores = {
+      easy: 1,
+      medium: 2,
+      hard: 3,
+    };
+    const baseScore = 10;
+    console.log(timer, difficulty, baseScore, difficultyScores[difficulty]);
+    return baseScore + (timer * difficultyScores[difficulty]);
+  };
 
   classValidation = (e) => {
     if (e) {
@@ -57,10 +84,12 @@ export default class Game extends Component {
 
   render() {
     const { questions, response } = this.state;
+    const { playing } = this.props;
     return (
       <>
         <Header />
         <main>
+          <Timer />
           {questions.map((question, i) => question.show && (
             <div key={ i }>
               <div data-testid="question-category">{question.category}</div>
@@ -75,11 +104,14 @@ export default class Game extends Component {
                       `${sortQuestion === question.correct_answer
                         ? 'correct-answer' : `wrong-answer-${index}`}`
                     }
-                    onClick={ () => this.changeClass(sortQuestion === question
-                      .correct_answer) }
+                    onClick={ () => {
+                      this.handleAnswer(sortQuestion)
+                      this.changeClass(sortQuestion === question
+                      .correct_answer)
+                    }
+                    disabled={ !playing }
                   >
                     {sortQuestion}
-
                   </button>
                 ))}
               </div>
@@ -101,4 +133,13 @@ Game.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   dispatch: PropTypes.func,
+  playing: PropTypes.bool,
+  timer: PropTypes.number,
 }.isRequired;
+
+const mapStateToProps = (state) => ({
+  playing: state.player.playing,
+  timer: state.player.timer,
+});
+
+export default connect(mapStateToProps)(Game);
