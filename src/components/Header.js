@@ -28,10 +28,7 @@ class Header extends Component {
             <img src="" alt="" />
           </div>
           <div data-testid="header-score">
-            Pontos:
-            {' '}
             {score}
-            {' '}
           </div>
         </div>
       </header>

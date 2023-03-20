@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Button from '../components/Button';
+import Header from '../components/Header';
 
 class Feedback extends React.Component {
   render() {
@@ -10,13 +11,14 @@ class Feedback extends React.Component {
     const totalAssertions = 3;
     return (
       <>
+        <Header />
         <h1>feedback</h1>
         { assertions < totalAssertions
           ? (<p data-testid="feedback-text">Could be better...</p>)
-          : (<p data-testid="feedback-text">Well Done</p>)}
+          : (<p data-testid="feedback-text">Well Done!</p>)}
         <section className="results">
-          <p data-testid="feedback-total-score">{ assertions }</p>
-          <p data-testid="feedback-total-question">{ score }</p>
+          <p data-testid="feedback-total-question">{ assertions }</p>
+          <p data-testid="feedback-total-score">{ score }</p>
         </section>
         <Button
           dataTest="btn-play-again"
