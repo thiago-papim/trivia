@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
 import './game.css';
+import Button from '../components/Button';
 
 export default class Game extends Component {
   state = {
@@ -26,7 +27,6 @@ export default class Game extends Component {
         question.show = false;
       }
       const allQuestions = [question.correct_answer, ...question.incorrect_answers];
-      // console.log(allQuestions);
       const num = 0.5;
       question.sortQuestions = allQuestions.sort(() => num - Math.random());
       return question;
@@ -43,6 +43,16 @@ export default class Game extends Component {
 
   changeClass = () => {
     this.setState({ response: true });
+  };
+
+  nextQuestion = (question, index, arrQuestions) => {
+    const { history } = this.props;
+    this.setState({ response: false });
+    question.show = false;
+    if (index === arrQuestions.length - 1) {
+      history.push('/feedback');
+    }
+    arrQuestions[index + 1].show = true;
   };
 
   render() {
@@ -73,6 +83,11 @@ export default class Game extends Component {
                   </button>
                 ))}
               </div>
+              { response ? <Button
+                label="Next"
+                dataTest="btn-next"
+                onClick={ () => this.nextQuestion(question, i, questions) }
+              /> : '' }
             </div>
           ))}
         </main>

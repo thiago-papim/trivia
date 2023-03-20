@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// Button generico para uso na 15 e 16 ou mais requisitos
+import PropTypes from 'prop-types';
+
 export default class Button extends Component {
   render() {
     const { label, onClick, dataTest } = this.props;
@@ -16,7 +17,7 @@ export default class Button extends Component {
 Button.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string.isRequired,
-  dataTest: PropTypes.sting.isRequired,
+  dataTest: PropTypes.string.isRequired,
 };
 
 Button.defaultProps = {
