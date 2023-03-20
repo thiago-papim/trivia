@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
+import Timer from '../components/Timer';
 
 export default class Game extends Component {
   state = {
     questions: [],
+    playing: true,
   };
 
   async componentDidMount() {
@@ -24,7 +26,6 @@ export default class Game extends Component {
         question.show = false;
       }
       const allQuestions = [question.correct_answer, ...question.incorrect_answers];
-      console.log(allQuestions);
       const num = 0.5;
       question.sortQuestions = allQuestions.sort(() => num - Math.random());
       return question;
@@ -32,27 +33,21 @@ export default class Game extends Component {
     this.setState({ questions });
   }
 
+  changePlaying = () => {
+    this.setState(({ playing }) => ({ playing: !playing }));
+  };
+
   render() {
-    const { questions } = this.state;
+    const { questions, playing } = this.state;
     return (
       <>
         <Header />
         <main>
+          <Timer playing={ playing } changePlaying={ this.changePlaying } />
           {questions.map((question, i) => question.show && (
             <div key={ i }>
               <div data-testid="question-category">{question.category}</div>
               <div data-testid="question-text">{question.question}</div>
-              {/* <button data-testid="correct-answer">
-                {question.correct_answer}
-              </button>
-              {question.incorrect_answers.map((incorrectQuestion, index) => (
-                <button
-                  data-testid={ `wrong-answer-${i}` }
-                  key={ index }
-                >
-                  {incorrectQuestion}
-                </button>
-              ))} */}
               <div data-testid="answer-options">
                 {question.sortQuestions.map((sortQuestion, index) => (
                   <button
@@ -61,9 +56,10 @@ export default class Game extends Component {
                       `${sortQuestion === question.correct_answer
                         ? 'correct-answer' : `wrong-answer-${index}`}`
                     }
+                    onClick={ () => this.setState({ playing: false }) }
+                    disabled={ !playing }
                   >
                     {sortQuestion}
-
                   </button>
                 ))}
               </div>
