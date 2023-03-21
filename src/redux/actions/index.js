@@ -4,6 +4,7 @@ export const PLAYING = 'PLAYING';
 export const SCORE = 'SCORE';
 export const ASSERTION = 'ASSERTION';
 export const NEW_TIMER = 'NEW_TIMER';
+export const NEW_GAME = 'NEW_GAME';
 
 export const loginAction = (player) => ({
   type: LOGIN,
@@ -29,4 +30,8 @@ export const assertionAction = () => ({
 
 export const newTimer = () => ({
   type: NEW_TIMER,
+});
+
+export const newGame = () => ({
+  type: NEW_GAME,
 });
