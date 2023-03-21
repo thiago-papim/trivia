@@ -79,6 +79,10 @@ main {
     padding: 0 20px;
   }
 
+  .questions {
+    width: 100%;
+  }
+
   .options {
     display: flex;
     flex-wrap: wrap;
@@ -88,8 +92,10 @@ main {
   }
 
   .options button {
+    border-radius: 20px;
     margin: 0 auto;
-    width: 49%;
+    min-width: 0;
+    width: 40%;
   }
 
   .options .next {
