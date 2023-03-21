@@ -143,6 +143,7 @@ class Game extends Component {
                   </button>
                 ))}
                 { response || timer === 0 ? <Button
+                  styles={ styles.next }
                   label="Next"
                   dataTest="btn-next"
                   onClick={ () => this.nextQuestion(question, i, questions) }
