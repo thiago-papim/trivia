@@ -1,5 +1,12 @@
 import { MD5 } from 'crypto-js';
-import { ASSERTION, LOGIN, PLAYING, SCORE, TIMER, NEW_TIMER } from '../actions/index';
+import { ASSERTION,
+  LOGIN,
+  PLAYING,
+  SCORE,
+  TIMER,
+  NEW_TIMER,
+  NEW_GAME,
+} from '../actions/index';
 
 const INITIAL_STATE = {
   name: '',
@@ -35,6 +42,9 @@ const player = (state = INITIAL_STATE, action) => {
     return { ...state, assertions: assertions + 1 }; }
   case NEW_TIMER: {
     return { ...state, timer: 30 };
+  }
+  case NEW_GAME: {
+    return INITIAL_STATE;
   }
   default: return state;
   }

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { newGame } from '../redux/actions';
 
 import Button from '../components/Button';
 
 class Ranking extends React.Component {
   render() {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
     const ranking = JSON.parse(localStorage.getItem('ranking'));
     return (
       <>
@@ -28,7 +29,10 @@ class Ranking extends React.Component {
         <Button
           dataTest="btn-go-home"
           label="Home"
-          onClick={ () => history.push('/') }
+          onClick={ () => {
+            history.push('/');
+            dispatch(newGame());
+          } }
         />
       </>
     );
@@ -39,6 +43,7 @@ Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(null)(Ranking);

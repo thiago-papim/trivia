@@ -79,10 +79,27 @@ class Game extends Component {
     dispatch(playingAction());
     this.setState({ response: false });
     if (index === arrQuestions.length - 1) {
+      this.createRanking();
       history.push('/feedback');
     } else {
       question.show = false;
       arrQuestions[index + 1].show = true;
+    }
+  };
+
+  createRanking = () => {
+    const { score, name, gravatarEmail } = this.props;
+    const player = {
+      playerImage: gravatarEmail,
+      score,
+      name,
+    };
+    const ranking = JSON.parse(localStorage.getItem('ranking'));
+    if (ranking) {
+      localStorage
+        .setItem('ranking', JSON.stringify([...ranking, player]));
+    } else {
+      localStorage.setItem('ranking', JSON.stringify([player]));
     }
   };
 
@@ -145,6 +162,9 @@ Game.propTypes = {
 const mapStateToProps = (state) => ({
   playing: state.player.playing,
   timer: state.player.timer,
+  name: state.player.name,
+  score: state.player.score,
+  gravatarEmail: state.player.gravatarEmail,
 });
 
 export default connect(mapStateToProps)(Game);
