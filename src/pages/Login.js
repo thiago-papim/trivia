@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { API_PLAYER } from '../services/APIPlayer';
 import { loginAction } from '../redux/actions';
+import styles from './Login.module.css';
 
 // Componente criado por todos integrantes do grupo
 
@@ -48,37 +49,42 @@ class Login extends React.Component {
   render() {
     const { name, email, buttonLogin } = this.state;
     return (
-      <>
-        <input
-          name="name"
-          type="text"
-          placeholder="Nome"
-          data-testid="input-player-name"
-          value={ name }
-          onChange={ this.handleChange }
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          data-testid="input-gravatar-email"
-          value={ email }
-          onChange={ this.handleChange }
-        />
-        <input
-          type="button"
-          value="Play"
-          data-testid="btn-play"
-          disabled={ buttonLogin }
-          onClick={ this.btnPlay }
-        />
-        <input
-          type="button"
-          value="settings"
-          data-testid="btn-settings"
-          onClick={ this.btnSettings }
-        />
-      </>
+      <main className={ styles.login }>
+        <div><img src="/assets/image/logo.png" alt="tivia logo" /></div>
+        <div className={ styles.container }>
+          <input
+            name="name"
+            type="text"
+            placeholder="Nome"
+            data-testid="input-player-name"
+            value={ name }
+            onChange={ this.handleChange }
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            data-testid="input-gravatar-email"
+            value={ email }
+            onChange={ this.handleChange }
+          />
+          <input
+            className={ ` ${styles.btn} ${styles.play} ` }
+            type="button"
+            value="Play"
+            data-testid="btn-play"
+            disabled={ buttonLogin }
+            onClick={ this.btnPlay }
+          />
+          <input
+            className={ `${styles.btn} ${styles.settings}` }
+            type="button"
+            value="settings"
+            data-testid="btn-settings"
+            onClick={ this.btnSettings }
+          />
+        </div>
+      </main>
     );
   }
 }

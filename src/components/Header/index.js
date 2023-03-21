@@ -8,8 +8,8 @@ class Header extends Component {
   render() {
     const { gravatarEmail, name, score } = this.props;
     return (
-      <header className={ `flex items-center justify-end p-5 ${styles.header}` }>
-        <div className={ `${styles.name}` }>
+      <header className={ styles.header }>
+        <div className={ styles.name }>
           <div>
             <img
               src={ gravatarEmail }
@@ -23,9 +23,9 @@ class Header extends Component {
             {name}
           </div>
         </div>
-        <div className="flex items-center">
+        <div className={ styles.score }>
           <div>
-            <img src="" alt="" />
+            <img src="/assets/image/star.png" alt="star" />
           </div>
           <div data-testid="header-score">
             {score}

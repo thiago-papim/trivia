@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { API_GAME } from '../services/APIPlayer';
 import Timer from '../components/Timer';
 import { assertionAction, newTimer, playingAction, scoreAction } from '../redux/actions';
-import './game.css';
+import styles from './Game.module.css';
 import Button from '../components/Button';
 
 class Game extends Component {
@@ -64,9 +64,9 @@ class Game extends Component {
 
   classValidation = (e) => {
     if (e) {
-      return 'correct';
+      return styles.correct;
     }
-    return 'incorrect';
+    return styles.incorrect;
   };
 
   changeClass = () => {
@@ -106,17 +106,23 @@ class Game extends Component {
   render() {
     const { questions, response } = this.state;
     const { timer } = this.props;
-    console.log(timer);
     return (
       <>
         <Header />
         <main>
-          <Timer />
           {questions.map((question, i) => question.show && (
-            <div key={ i }>
-              <div data-testid="question-category">{question.category}</div>
-              <div data-testid="question-text">{question.question}</div>
-              <div data-testid="answer-options">
+            <div key={ i } className={ styles.container }>
+              <div className={ styles.questions }>
+                <div
+                  data-testid="question-category"
+                  className={ styles.category }
+                >
+                  {question.category}
+                </div>
+                <div data-testid="question-text">{question.question}</div>
+                <div className={ styles.timer }><Timer /></div>
+              </div>
+              <div data-testid="answer-options" className={ styles.options }>
                 {question.sortQuestions.map((sortQuestion, index) => (
                   <button
                     key={ index }
@@ -136,12 +142,12 @@ class Game extends Component {
                     {sortQuestion}
                   </button>
                 ))}
+                { response || timer === 0 ? <Button
+                  label="Next"
+                  dataTest="btn-next"
+                  onClick={ () => this.nextQuestion(question, i, questions) }
+                /> : '' }
               </div>
-              { response || timer === 0 ? <Button
-                label="Next"
-                dataTest="btn-next"
-                onClick={ () => this.nextQuestion(question, i, questions) }
-              /> : '' }
             </div>
           ))}
         </main>

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { playingAction, timerAction } from '../redux/actions';
+import { playingAction, timerAction } from '../../redux/actions';
+import styles from './Timer.module.css';
 
 // FEITO POR MATEUS E EDUARDO
 class Timer extends Component {
@@ -24,7 +25,7 @@ class Timer extends Component {
   render() {
     const { timer } = this.props;
     return (
-      <div>
+      <div className={ styles.timer }>
         Tempo:
         {' '}
         {timer}
