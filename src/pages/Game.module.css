@@ -70,3 +70,30 @@ main {
   border-radius: 1px;
   color: white;
 }
+
+@media ( max-width : 768px ) {
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .options {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 50px;
+  }
+
+  .options button {
+    margin: 0 auto;
+    width: 49%;
+  }
+
+  .options .next {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
