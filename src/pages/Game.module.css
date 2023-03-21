@@ -80,10 +80,10 @@ main {
   }
 
   .options {
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    margin: 0 auto;
     margin-top: 50px;
   }
 
@@ -93,7 +93,7 @@ main {
   }
 
   .options .next {
-    width: 100%;
     margin-top: 15px;
+    width: 100%;
   }
 }
