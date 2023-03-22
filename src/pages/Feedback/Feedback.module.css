@@ -1,0 +1,66 @@
+.feedback {
+  display: grid;
+  place-items: center;
+}
+
+.logo {
+  margin-bottom: 40px;
+}
+
+.gravatar {
+  position: absolute;
+}
+
+.container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 278px;
+  justify-content: center;
+  place-items: center;
+  width: 439px;
+}
+
+.feedback p {
+  font-size: 16px;
+}
+
+.feedback h2 {
+  color: #ea5d5d;
+  font-size: 30px;
+}
+
+.btns {
+  display: flex;
+  gap: 13px;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  padding: 11px;
+  text-transform: uppercase;
+  width: 50%;
+}
+
+.blue {
+  background-color: #00d5e2;
+}
+
+.green {
+  background-color: #2fc18c;
+}
+
+@media ( max-width : 500px ) {
+
+  .container {
+    width: 300px;
+  }
+}

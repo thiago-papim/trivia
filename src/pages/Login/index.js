@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_PLAYER } from '../services/APIPlayer';
-import { loginAction } from '../redux/actions';
+import { API_PLAYER } from '../../services/APIPlayer';
+import { loginAction } from '../../redux/actions';
 import styles from './Login.module.css';
 
 // Componente criado por todos integrantes do grupo

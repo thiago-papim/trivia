@@ -3,49 +3,10 @@
   margin: 0;
   padding: 0;
 }
+
 html {
   background-image: url('./assets/image/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-}
-
-.flex {
-  display: flex;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-end {
-  justify-content: end;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.place-items-center {
-  place-items: center;
-}
-
-.p-5 {
-  padding: 16px;
-}
-
-.gap-3 {
-  gap: 6px;
-}
-
-.gap-6 {
-  gap: 12px;
-}
-
-.gap-12 {
-  gap: 24px;
 }

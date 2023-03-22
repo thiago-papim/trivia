@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
+import Gravatar from '../Gravatar';
 
 // FEITO POR: MATEUS E EDUARDO
 class Header extends Component {
   render() {
-    const { gravatarEmail, name, score } = this.props;
+    const { name, score } = this.props;
     return (
       <header className={ styles.header }>
         <div className={ styles.name }>
           <div>
-            <img
-              src={ gravatarEmail }
-              alt={ gravatarEmail }
-              data-testid="header-profile-picture"
-            />
+            <Gravatar />
           </div>
           <div data-testid="header-player-name">
             Nome:

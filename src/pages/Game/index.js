@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Header from '../components/Header';
-import { API_GAME } from '../services/APIPlayer';
-import Timer from '../components/Timer';
-import { assertionAction, newTimer, playingAction, scoreAction } from '../redux/actions';
+import Header from '../../components/Header';
+import { API_GAME } from '../../services/APIPlayer';
+import Timer from '../../components/Timer';
+import { assertionAction,
+  newTimer, playingAction, scoreAction } from '../../redux/actions';
 import styles from './Game.module.css';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 
 class Game extends Component {
   state = {

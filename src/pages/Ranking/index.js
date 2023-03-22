@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { newGame } from '../redux/actions';
+import { newGame } from '../../redux/actions';
 
-import Button from '../components/Button';
+import Button from '../../components/Button';
 
 class Ranking extends React.Component {
   render() {
