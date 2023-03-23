@@ -1,0 +1,94 @@
+.ranking {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+  }
+  .ranking .logo {
+    height: 178px;
+    position: absolute;
+    top: 15px;
+    width: 177px;
+  }
+  .logo img {
+    width: 100%;
+  }
+  .ranking h1 {
+    color: #3C1B7A;
+    margin-bottom: 37px;
+  }
+  .container {
+    background-color: white;
+    min-height: 488px;
+    padding: 50px;
+    text-align: center;
+    width: 489px;
+  }
+  .players {
+    display: grid;
+    gap: 50px;
+    margin-bottom: 35px;
+  }
+  .player {
+    align-items: center;
+    background-color: #EBEBEB;
+    border-radius: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-content: space-between;
+    padding: 10px 0;
+    padding-left: 10px;
+    position: relative;
+    width: 100%;
+  }
+  .player img {
+    border-radius: 50%;
+    height: 37px;
+    width: 37px;
+  }
+  .score {
+    align-items: center;
+    background-color: white;
+    border-radius: 100px;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.25);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    min-width: 184px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .btn {
+    background-color: #2FC18C;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+    width: 100%;
+  }
+  @media ( max-width : 500px ) {
+    .ranking .logo {
+      height: 100px;
+      position: absolute;
+      top: 15px;
+      width: 100px;
+    }
+    .logo img {
+      width: 100%;
+    }
+    .container {
+      height: auto;
+      padding: inherit 10px;
+      width: 100%;
+    }
+    .player {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .score {
+      min-width: 0;
+      position: static;
+      width: 100px;
+    }
+  }
